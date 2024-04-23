@@ -41,9 +41,7 @@ def main():
         if choice == "0":
             break
         elif choice == "1":
-            title = input("Enter the title of the task: ")
-            description = input("Enter the description of the task: ")
-            add_task(title, description)
+            add_task()
         elif choice == "2":
             display_task()
         elif choice == "3":
