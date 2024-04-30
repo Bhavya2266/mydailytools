@@ -6,29 +6,70 @@
 ○ Modify a task
 ● The tasks will be saved in a file using pickle (need research)
 """
-tasks = []
+import pickle
+def storing_data(task):
+    with open('task.pkl', 'wb') as file:
+        pickle.dump(task ,file)
+ 
+def getting_data():
+    with open('task.pkl', 'rb') as file:
+        return pickle.load(file)
+
 def add_task():
-    title =input("Enter the title : ")
-    description=input("Enter the description")
-    task= {"title":title, "description" : description}
+    try:
+        tasks = getting_data()
+    except Exception:
+        tasks = []
+    title = input("Enter the title: ")
+    description = input("Enter the description: ")
+    task = {"title": title, "description" : description}
     tasks.append(task)
+    storing_data(tasks)
     print("you're task has been added")
+
 def display_task():
+    try:
+        tasks = getting_data()
+    except Exception:
+        print("No data to show.")
+
     for task in tasks:
         print(f"title: {task['title']}, description: {task['description']}")  
 
 
 def delete_task():
+    tasks = getting_data()
+    
     if not tasks:
         print("no tasks has been added")
     else:
-        print("task has been deleted")
+        try:
+            inp= int(input("which task do you want to delete"))
+            tasks.pop(inp-1)
+            print("task has been deleted")
+            storing_data(tasks)
+        except ValueError:
+            print("no tasks has been deleted ")
+      
+        
+   
 def modify_task():
-    if not task:
-        print("no tasks found")  
-    else:
-        print("1.modify the title")
-        print("2.modify the description")
+    tasks = getting_data()
+    while True:
+        try:
+            if not tasks:
+                print("no tasks found")  
+            else:
+               print("1.modify the title")
+               print("2.modify the description")
+        except ValueError:
+            
+             break
+
+    storing_data(tasks)
+  
+
+
 def main():
     while True:
         print("Menu:")
@@ -45,8 +86,7 @@ def main():
         elif choice == "2":
             display_task()
         elif choice == "3":
-            taskId = int(input("Enter the title of the task to delete: "))
-            delete_task(taskId - 1)
+            delete_task()
         elif choice == "4":
             taskId = int(input("Enter the title of the task to modify: "))
             title = input("Enter the new title (leave blank to keep existing title): ")
