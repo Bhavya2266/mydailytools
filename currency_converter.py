@@ -4,7 +4,7 @@ currencies = [
     },
     { "currency": "EUR","name": "Euro",
         "symbol": "€", "rate": 0.86
-    }
+    },
     {"currency": "GBP","name": "Pound",
       "symbol": "£","rate": 0.72
 
@@ -39,5 +39,5 @@ def main():
     print("here is your currency", converted_amount)
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()

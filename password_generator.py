@@ -26,13 +26,14 @@ def main():
             while 1 :
                 try:
                     length = int(input("Enter the password with its desired length: "))
-                   
+                    break
+
                 except ValueError:
                     print("Enter a correct number to continue.")
-                upper_case = input(f"Use uppercase letters (y/n): ").lower() == "y"
-                numbers_case= input(f"Use numbers (y/n): ").lower() == "y"
-                special_case= input(f"Use special characters (y/n): ").lower() == "y"
-                print(f"Generated password: {generate_password(length, upper_case, numbers_case, special_case)}")
+            upper_case = input(f"Use uppercase letters (y/n): ").lower() == "y"
+            numbers_case= input(f"Use numbers (y/n): ").lower() == "y"
+            special_case= input(f"Use special characters (y/n): ").lower() == "y"
+            print(f"Generated password: {generate_password(length, upper_case, numbers_case, special_case)}")
                     
         else:
             print("Invalid option, please try again later.")
